@@ -1,0 +1,41 @@
+
+<!-- form_with helper method takes in scope, local and a block to yield to.
+scope is the type of object associated with, in this case articles
+by default form_with will post to itself, we used articles_path to post elsewhere which in this case we
+get from "rails routes", the prefix articles, since this is a POST it will send a post request, this is easy
+to understand looking at "rails routes" and looking for Prefix and controller#action. it will call #create method -->
+
+<%= form_with model: @article, local: true do |form| %>
+<!-- # partials begin with _ in name, this is used in both edit and new to prevent duplication -->
+  <!-- we have to show the errors, otherwise silent fail! -->
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+          <!-- pluralize is a rails helper which does just that -->
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <!-- form is a local variable that comes from call to form_with-->
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+
+  <p>
+    <%= form.label :text %><br>
+    <%= form.text_area :text %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
