@@ -1,0 +1,15 @@
+<!-- would have liked a better explanation of how form_with was used here. guess I can look it up later
+it does say an array was used in the model to build a nested route looking like: /articles/1/comments -->
+<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :commenter %><br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

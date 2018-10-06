@@ -1,0 +1,17 @@
+<!-- nothing special here what i would expect we have an array of comments
+within the article and iterate through whowing each one -->
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+  <p>
+    <!-- this never worked for me so skip -->
+    <%= link_to 'Destroy Comment', [comment.article, comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+  </p>
